@@ -11,7 +11,7 @@ driver = webdriver.Chrome('I:\\Downloads\\chromedriver_win32\\chromedriver.exe')
 # driver.get method() will navigate to a page given by the URL address
 driver.get('https://www.linkedin.com/company/audible-inc/people/')
 
-# locate email form by_class_name
+#sometimes it opens main page and nor dirrectly sign in page
 try:
     signInButton = driver.find_element_by_class_name('nav__button-secondary')
 
@@ -19,16 +19,21 @@ try:
 except:
     pass
 
+#type username
 unameBox = driver.find_element_by_id('username')
 
 unameBox.send_keys(username)
 
+#type password
 pwBox = driver.find_element_by_id('password')
 
 pwBox.send_keys(password)
 
+#wait for load
 time.sleep(2)
 
+
+#sometimes the sign in button is 3 someimes it 4
 try:
     signInXpath = "/html/body/div/main/div[2]/form/div[4]"
     signInButton = driver.find_element_by_xpath(signInXpath)
@@ -38,9 +43,11 @@ except:
     
 signInButton.click()
 
-
+#wait for load
 time.sleep(3)
 
+
+#loop forever and print each name, when no more names then scroll down
 i = 1
 while True:
 
@@ -64,7 +71,3 @@ while True:
             
         except:
             isGood = False
-
-# send_keys() to simulate key strokes
-#username.send_keys('example@gmail.com')
-#/html/body/div[7]/div[3]/div/div[3]/div[2]/div[2]/div[2]/ul/li[997]/div/section/div/div/div[2]/div[1]/a/div
