@@ -3,7 +3,11 @@ from selenium import webdriver
 import time
 
 username = "owen1050@gmail.com"
-password = ""
+
+#read password from file so its not on github
+f = open("password.txt", "r")
+password = f.read()
+f.close()
 
 # specifies the path to the chromedriver.exe
 driver = webdriver.Chrome('I:\\Downloads\\chromedriver_win32\\chromedriver.exe')
@@ -56,8 +60,6 @@ while True:
     while isGood:
         try:
             i = i + 1
-            print(i)
-            #        /html/body/div[7]/div[3]/div/div[3]/div[2]/div[2]/div[2]/ul/li[997]        /div/section/div/div/div[2]/div[1]/a/div
             nameX = "/html/body/div[7]/div[3]/div/div[3]/div[2]/div[2]/div[2]/ul/li["+ str(i)+"]/div/section/div/div/div[2]/div[1]/a/div"
             name = driver.find_element_by_xpath(nameX)
             nameText = str(name.text)
